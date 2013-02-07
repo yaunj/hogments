@@ -49,6 +49,7 @@ class SnortLexer(RegexLexer):
                 t.Name.Attribute),
             (r'(<-|->|<>)', t.Operator),
             (ur'”', t.String, 'fancy-string'),
+            (ur'“', t.String, 'fancy-string'),
             (r'"', t.String, 'dq-string'),
             (r'\'', t.String, 'sq-string'),
             (r'(\d+)', t.Number),
