@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding: utf-8
 from pygments.lexer import RegexLexer, include, bygroups
 import pygments.token as t
 
@@ -47,6 +48,7 @@ class SnortLexer(RegexLexer):
               'noalert|limit|treshold|count|str_offset|str_depth|tagged)',
                 t.Name.Attribute),
             (r'(<-|->|<>)', t.Operator),
+            (ur'”', t.String, 'fancy-string'),
             (r'"', t.String, 'dq-string'),
             (r'\'', t.String, 'sq-string'),
             (r'(\d+)', t.Number),
@@ -66,6 +68,11 @@ class SnortLexer(RegexLexer):
             include('hex'),
             (r'([^\'])', t.String),
             (r'\'', t.String, '#pop')
+        ],
+        'fancy-string': [
+            include('hex'),
+            (ur'([^”])', t.String),
+            (ur'”', t.String, '#pop')
         ],
         'metadata': [
             (r'\s', t.Whitespace),
