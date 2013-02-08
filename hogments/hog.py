@@ -81,7 +81,7 @@ class SnortLexer(RegexLexer):
             (r';', t.Punctuation, '#pop'),
         ],
         'reference': [
-            (r'(\w+),(?:\s*)([^;]+)', bygroups(t.Name.Variable, t.Name.Attribute)),
+            (r'(\w+)(,)(?:\s*)([^;]+)', bygroups(t.Name.Variable, t.Punctuation, t.Name.Attribute)),
             (r';', t.Punctuation, '#pop')
         ]
     }
