@@ -13,39 +13,40 @@ class SnortLexer(RegexLexer):
             (r'#.*$', t.Comment),
             (r'(\$\w+)', t.Name.Variable),
             (r'\b(any|(\d{1,3}\.){3}\d{1,3}(/\d+)?)', t.Name.Variable),
-            (r'^\s*(log|pass|alert|activate|dynamic|drop|reject|sdrop|ruletype|var|portvar|ipvar)',
+            (r'^\s*(log|pass|alert|activate|dynamic|drop|reject|sdrop|'
+             r'ruletype|var|portvar|ipvar)',
                 t.Keyword.Type),
             (r'\b(metadata)(?:\s*:)', t.Keyword, 'metadata'),
             (r'\b(reference)(?:\s*:)', t.Keyword, 'reference'),
-            (r'\b(msg|reference|gid|sid|rev|classtype|priority|metadata|' \
-              'content|http_encode|uricontent|urilen|isdataat|pcre|pkt_data|' \
-              'file_data|base64_decode|base64_data|byte_test|byte_jump|' \
-              'byte_extract|ftp_bounce|pcre|asn1|cvs|dce_iface|dce_opnum|' \
-              'dce_stub_data|sip_method|sip_stat_code|sip_header|sip_body|' \
-              'gtp_type|gtp_info|gtp_version|ssl_version|ssl_state|nocase|' \
-              'rawbytes|depth|offset|distance|within|http_client_body|' \
-              'http_cookie|http_raw_cookie|http_header|http_raw_header|' \
-              'http_method|http_uri|http_raw_uri|http_stat_code|' \
-              'http_stat_msg|fast_pattern|fragoffset|fragbits|' \
-              'ttl|tos|id|ipopts|dsize|flags|flow|flowbits|seq|ack|window|' \
-              'itype|icode|icmp_id|icmp_seq|rpc|ip_proto|sameip|' \
-              'stream_reassemble|stream_size|logto|session|resp|react|tag|' \
-              'activates|activated_by|replace|detection_filter|treshold)' \
-              '(?:\s*:)',
+            (r'\b(msg|reference|gid|sid|rev|classtype|priority|metadata|'
+             r'content|http_encode|uricontent|urilen|isdataat|pcre|pkt_data|'
+             r'file_data|base64_decode|base64_data|byte_test|byte_jump|'
+             r'byte_extract|ftp_bounce|pcre|asn1|cvs|dce_iface|dce_opnum|'
+             r'dce_stub_data|sip_method|sip_stat_code|sip_header|sip_body|'
+             r'gtp_type|gtp_info|gtp_version|ssl_version|ssl_state|nocase|'
+             r'rawbytes|depth|offset|distance|within|http_client_body|'
+             r'http_cookie|http_raw_cookie|http_header|http_raw_header|'
+             r'http_method|http_uri|http_raw_uri|http_stat_code|'
+             r'http_stat_msg|fast_pattern|fragoffset|fragbits|'
+             r'ttl|tos|id|ipopts|dsize|flags|flow|flowbits|seq|ack|window|'
+             r'itype|icode|icmp_id|icmp_seq|rpc|ip_proto|sameip|'
+             r'stream_reassemble|stream_size|logto|session|resp|react|tag|'
+             r'activates|activated_by|replace|detection_filter|treshold)'
+             r'(?:\s*:)',
                 t.Keyword),
             (r'\b(tcp|udp|icmp|ip)', t.Keyword.Constant),
-            (r'\b(hex|dec|oct|string|type|output|any|engine|soid|service|' \
-              'norm|raw|relative|bytes|big|little|align|invalid-entry|' \
-              'enable|disable|client|server|both|either|printable|binary|' \
-              'all|session|host|packets|seconds|bytes|src|dst|track|by_src|' \
-              'by_dst|uri|header|cookie|utf8|double_encode|non_ascii|' \
-              'uencode|bare_byte|ascii|iis_encode|bitstring_overflow|' \
-              'double_overflow|oversize_length|absolute_offset|' \
-              'relative_offset|rr|eol|nop|ts|sec|esec|lsrr|lsrre|' \
-              'ssrr|satid|to_client|to_server|from_client|from_server|' \
-              'established|not_established|stateless|no_stream|only_stream|' \
-              'no_frag|only_frag|set|setx|unset|toggle|isset|isnotset|' \
-              'noalert|limit|treshold|count|str_offset|str_depth|tagged)',
+            (r'\b(hex|dec|oct|string|type|output|any|engine|soid|service|'
+             r'norm|raw|relative|bytes|big|little|align|invalid-entry|'
+             r'enable|disable|client|server|both|either|printable|binary|'
+             r'all|session|host|packets|seconds|bytes|src|dst|track|by_src|'
+             r'by_dst|uri|header|cookie|utf8|double_encode|non_ascii|'
+             r'uencode|bare_byte|ascii|iis_encode|bitstring_overflow|'
+             r'double_overflow|oversize_length|absolute_offset|'
+             r'relative_offset|rr|eol|nop|ts|sec|esec|lsrr|lsrre|'
+             r'ssrr|satid|to_client|to_server|from_client|from_server|'
+             r'established|not_established|stateless|no_stream|only_stream|'
+             r'no_frag|only_frag|set|setx|unset|toggle|isset|isnotset|'
+             r'noalert|limit|treshold|count|str_offset|str_depth|tagged)',
                 t.Name.Attribute),
             (r'(<-|->|<>)', t.Operator),
             (ur'”', t.String, 'fancy-string'),
@@ -77,11 +78,13 @@ class SnortLexer(RegexLexer):
         ],
         'metadata': [
             (r'\s', t.Whitespace),
-            (r'([\w_-]+)(\s+)([\w_-]+)', bygroups(t.Name.Variable, t.Whitespace, t.Name.Attribute)),
+            (r'([\w_-]+)(\s+)([\w_-]+)',
+                bygroups(t.Name.Variable, t.Whitespace, t.Name.Attribute)),
             (r';', t.Punctuation, '#pop'),
         ],
         'reference': [
-            (r'(\w+)(,)(?:\s*)([^;]+)', bygroups(t.Name.Variable, t.Punctuation, t.Name.Attribute)),
+            (r'(\w+)(,)(?:\s*)([^;]+)',
+                bygroups(t.Name.Variable, t.Punctuation, t.Name.Attribute)),
             (r';', t.Punctuation, '#pop')
         ]
     }
