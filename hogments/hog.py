@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
+#
+# License: BSD; see LICENSE for more details.
 from pygments.lexer import RegexLexer, include, bygroups
 import pygments.token as t
 

@@ -9,6 +9,7 @@ snort = hogments.hog:SnortLexer
 setup(
     name = 'hogments',
     version = '0.1',
+    license = 'BSD',
     description = __doc__,
     author = "Rune Hammersland",
     packages = ['hogments'],
